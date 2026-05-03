@@ -1,11 +1,24 @@
 {
-  "background_color": "#ffffff",
-  "dir": "ltr",
+  "name": "Lista de Compras",
+  "short_name": "Lista",
+  "description": "Aplicativo simples para controle de compras e gastos",
+  "start_url": ".",
+  "scope": ".",
   "display": "standalone",
-  "name": "caio5511.github",
-  "orientation": "any",
-  "scope": "/",
-  "short_name": "caio5511.github",
-  "start_url": "/",
-  "theme_color": "#ffffff"
+  "orientation": "portrait",
+  "background_color": "#f5f7fa",
+  "theme_color": "#4CAF50",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3081/3081559.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }

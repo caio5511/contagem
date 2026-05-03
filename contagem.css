@@ -6,105 +6,109 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fa;
+    font-family: Roboto, Arial, sans-serif;
+    background: #f1f3f4;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding: 40px;
 }
 
-
 .container {
+    width: 100%;
+    max-width: 420px;
+    min-height: 100vh;
     background: #ffffff;
-    padding: 25px;
-    border-radius: 12px;
-    width: 350px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
 }
 
 
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    font-size: 22px;
+    font-weight: 500;
+    color: #202124;
+    margin-bottom: 16px;
 }
 
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
+
 input {
-    padding: 10px;
-    border: 1px solid #ddd;
+    padding: 14px;
+    border: 1px solid #dadce0;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 16px;
+    background: #fff;
     transition: 0.2s;
 }
 
 input:focus {
     border-color: #4CAF50;
     outline: none;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.15);
 }
 
-
-button {
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
+button[type="submit"] {
+    padding: 14px;
     background: #4CAF50;
     color: white;
-    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
     transition: 0.2s;
 }
 
-button:hover {
+button[type="submit"]:active {
     background: #43a047;
 }
 
-#btLimpar {
-    display: block;
-    margin: 15px auto;
-    background: #e53935;
-}
 
-#btLimpar:hover {
-    background: #c62828;
+#btLimpar {
+    margin: 10px auto;
+    padding: 12px;
+    width: 70%;
+    background: #e53935;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
 }
 
 
 ul {
     list-style: none;
+    margin-top: 10px;
 }
 
+
 li {
-    background: #f9f9f9;
-    padding: 10px;
-    border-radius: 8px;
-    margin-top: 10px;
-    margin-bottom: 8px;
+    background: #ffffff;
+    padding: 14px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     transition: 0.2s;
 }
 
 
-li:hover {
+li:active {
     background: #e8f5e9;
-}
-
-
-li.selected {
-    background: #c8e6c9;
-    font-weight: bold;
 }
 
 
 .empty {
     text-align: center;
     color: #999;
-    margin-top: 10px;
+    padding: 20px;
 }

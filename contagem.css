@@ -8,107 +8,98 @@
 body {
     font-family: Roboto, Arial, sans-serif;
     background: #f1f3f4;
-    display: flex;
-    justify-content: center;
 }
+
+
+.header {
+    background: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 20px;
+    font-weight: 500;
+    position: sticky;
+    top: 0;
+}
+
 
 .container {
-    width: 100%;
-    max-width: 420px;
-    min-height: 100vh;
-    background: #ffffff;
     padding: 16px;
-    display: flex;
-    flex-direction: column;
-}
-
-
-h1 {
-    font-size: 22px;
-    font-weight: 500;
-    color: #202124;
-    margin-bottom: 16px;
 }
 
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 12px;
+    gap: 10px;
+    margin-bottom: 16px;
 }
 
-
 input {
-    padding: 14px;
-    border: 1px solid #dadce0;
-    border-radius: 8px;
+    padding: 12px;
+    border: none;
+    border-bottom: 2px solid #ccc;
     font-size: 16px;
-    background: #fff;
-    transition: 0.2s;
+    background: transparent;
 }
 
 input:focus {
-    border-color: #4CAF50;
     outline: none;
-    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.15);
+    border-bottom: 2px solid #4CAF50;
 }
 
+
 button[type="submit"] {
-    padding: 14px;
+    padding: 12px;
     background: #4CAF50;
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-button[type="submit"]:active {
-    background: #43a047;
-}
-
-
-#btLimpar {
-    margin: 10px auto;
-    padding: 12px;
-    width: 70%;
-    background: #e53935;
-    color: white;
-    border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     font-size: 15px;
-    cursor: pointer;
 }
 
 
 ul {
     list-style: none;
-    margin-top: 10px;
 }
 
 
 li {
-    background: #ffffff;
-    padding: 14px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    font-size: 15px;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: 0.2s;
+    padding: 14px 10px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
 }
 
 
 li:active {
-    background: #e8f5e9;
+    background: #eeeeee;
 }
 
 
-.empty {
-    text-align: center;
-    color: #999;
-    padding: 20px;
+#btLimpar {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: transparent;
+    color: #e53935;
+    border: none;
+    font-size: 14px;
+}
+
+.fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
 }

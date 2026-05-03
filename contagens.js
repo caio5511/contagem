@@ -43,7 +43,7 @@ function renderLista() {
     produtos.forEach((prod, i) => {
         const li = document.createElement("li")
 
-        li.textContent = `${prod.nome} - ${prod.valor.toFixed(2)}`
+        li.textContent = `${prod.nome} - ${prod.valor.toFixed(3)}`
 
         li.style.cursor = "pointer"
 

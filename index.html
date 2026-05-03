@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="contagem.css">
+    <script src="contagens.js"></script>
+    <link rel="manifest" href="manifest.json">
+    <title>Contagens</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Contagens</h1>
+
+        <form>
+            <input type="text" name="inProduto" placeholder="Produto" required>
+            <input type="number" name="inValor" placeholder="Valor" step="0.01" required>
+            <button type="submit">Adicionar</button>
+        </form>
+
+        <button id="btLimpar" type="button">Zerar lista</button>
+
+        <ul id="lista"></ul>
+    </div>
+
+    </script>
+</body>
+
+</html>

@@ -59,7 +59,10 @@ function renderLista() {
 
     })
 
-    const btLimpar = document.querySelector("#btLimpar")
+
+}
+
+  const btLimpar = document.querySelector("#btLimpar")
 
     btLimpar.addEventListener("click", () => {
         if (confirm("Deseja realmente limpar a lista?")) {
@@ -69,8 +72,6 @@ function renderLista() {
             renderLista()
         }
     })
-
-}
 
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js")

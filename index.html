@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="contagem.css">
-    <script src="contagens.js"></script>
     <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4CAF50">
     <title>Contagens</title>
 </head>
 
@@ -15,8 +15,8 @@
         <h1>Contagens</h1>
 
         <form>
-            <input type="text" name="inProduto" placeholder="Produto" required>
-            <input type="number" name="inValor" placeholder="Valor" step="0.01" required>
+            <input type="text" id="inProduto" placeholder="Produto" required>
+            <input type="number" id="inValor" placeholder="Valor" step="0.01" required>
             <button type="submit">Adicionar</button>
         </form>
 
@@ -25,7 +25,7 @@
         <ul id="lista"></ul>
     </div>
 
-    </script>
+    <script src="contagens.js"></script>
 </body>
 
 </html>

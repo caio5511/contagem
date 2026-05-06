@@ -1,7 +1,7 @@
 {
-  "name": "Lista de Compras",
-  "short_name": "Lista",
-  "description": "Aplicativo simples para controle de compras e gastos",
+  "name": "Contagens",
+  "short_name": "Contagem",
+  "description": "Aplicativo simples para contagem de estoque",
   "start_url": ".",
   "scope": ".",
   "display": "standalone",

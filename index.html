@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="contagem.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4CAF50">
+    <title>Contagens</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">Contagens</div>
+
+        <form>
+            <input type="text" id="inProduto" placeholder="Produto" required>
+            <input type="number" id="inValor" placeholder="Valor" step="0.001" required>
+            <button type="submit">Adicionar</button>
+        </form>
+
+        <div class="multiplicador-section">
+            <label class="multi-toggle">👆 Clique para Multiplicar e Somar</label>
+            <div class="multi-inputs">
+                <input type="number" id="inQtde" placeholder="Qtde" step="0.001" min="0">
+                <span>×</span>
+                <input type="number" id="inUnit" placeholder="Unit" step="0.001" min="0">
+                <button type="button" id="btMultiplicar">× Somar</button>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; justify-content: center; margin-top: 20px; width: 100%;">
+          <button id="btLimpar" type="button" style="flex: 1;">Zerar</button>
+          <button id="btDesfazer" type="button" style="flex: 1; font-size: 24px;">↶</button>
+        </div>
+
+        <ul id="lista"></ul>
+    </div>
+
+    <script src="contagens.js"></script>
+</body>
+
+</html>

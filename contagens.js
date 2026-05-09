@@ -267,8 +267,23 @@ function renderLista() {
             }
 
             localStorage.setItem("produtos", JSON.stringify(produtos))
+            // reaproveita o estado de expandido para não “fechar” ao alterar o FILHO
+            if (tipo === 'filho' && pai.filhos?.length) {
+                // mantém este pai expandido ao re-renderizar
+                aberto = true
+                filhosContainer.style.display = 'block'
+                toggleBtn.textContent = '▼'
+            }
+            if (tipo === 'pai') {
+                // mantém pai expandido se estava aberto
+                if (aberto) {
+                    filhosContainer.style.display = 'block'
+                    toggleBtn.textContent = '▼'
+                }
+            }
             renderLista()
         }
+
 
         // seleção do pai (último clicado)
         titleSpan.addEventListener('click', () => {

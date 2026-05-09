@@ -180,6 +180,9 @@ const previousState = JSON.parse(localStorage.getItem("produtos") || "[]");
 function renderLista() {
     lista.innerHTML = ""
 
+    // pai expandido persistente (para não fechar ao editar filho)
+    const filhosAbertosPaiId = localStorage.getItem("filhosAbertosPaiId") || null
+
     if (produtos.length === 0) {
         lista.innerHTML = "<li class='empty'>Lista vazia</li>"
         return
@@ -245,7 +248,6 @@ function renderLista() {
 
         li.appendChild(headerRow)
 
-        let aberto = false
         const filhosContainer = document.createElement('div')
         filhosContainer.style.width = '100%'
         filhosContainer.style.marginTop = '12px'
@@ -254,6 +256,103 @@ function renderLista() {
         filhosContainer.style.alignItems = 'center'
 
         li.appendChild(filhosContainer)
+
+        // estado inicial de expandir/recolher do pai (persistente)
+        let aberto = filhosAbertosPaiId === pai.id
+        filhosContainer.style.display = aberto ? 'block' : 'none'
+        if (pai.filhos?.length) {
+            toggleBtn.textContent = aberto ? '▼' : '▶'
+        } else {
+            toggleBtn.textContent = '—'
+        }
+
+        // Se vier marcado como expandido, renderiza os filhos agora.
+        if (aberto && (pai.filhos?.length || 0) > 0) {
+            filhosContainer.innerHTML = ''
+            ;(pai.filhos || []).forEach((filho) => {
+                const filhoIndex = produtos[paiIndex].filhos.findIndex(f => f.id === filho.id)
+                if (filhoIndex === -1) return
+
+                const childItem = document.createElement('div')
+                childItem.style.display = 'flex'
+                childItem.style.justifyContent = 'space-between'
+                childItem.style.alignItems = 'center'
+                childItem.style.gap = '10px'
+                childItem.style.padding = '10px 12px'
+                childItem.style.borderRadius = '16px'
+                childItem.style.border = '1px solid rgba(255,255,255,0.4)'
+                childItem.style.background = 'rgba(255,255,255,0.7)'
+                childItem.style.marginBottom = '10px'
+                childItem.style.flexDirection = 'column'
+                childItem.style.alignItems = 'stretch'
+
+                const childTitle = document.createElement('span')
+                childTitle.textContent = `${filho.nome} - ${Number(filho.valor).toFixed(3)}`
+                childTitle.style.flex = '1'
+                childTitle.style.cursor = 'pointer'
+
+                const childBtns = document.createElement('div')
+                childBtns.style.display = 'flex'
+                childBtns.style.flexDirection = 'row'
+                childBtns.style.gap = '6px'
+                childBtns.style.marginTop = '8px'
+                childBtns.style.width = '100%'
+                childBtns.style.justifyContent = 'center'
+
+                const childSub24 = document.createElement('button')
+                childSub24.type = 'button'
+                childSub24.textContent = '-2.4'
+                childSub24.className = 'btn-subtrair'
+                childSub24.style.height = '38px'
+                childSub24.style.padding = '8px 12px'
+                childSub24.style.fontSize = '13px'
+
+                const childSub2 = document.createElement('button')
+                childSub2.type = 'button'
+                childSub2.textContent = '-2'
+                childSub2.className = 'btn-subtrair btn-small'
+                childSub2.style.height = '38px'
+
+                const childDel = document.createElement('button')
+                childDel.type = 'button'
+                childDel.textContent = 'Excluir'
+                childDel.className = 'btn-subtrair btn-small'
+                childDel.style.background = 'linear-gradient(135deg, #f97316, #ea580c)'
+                childDel.style.boxShadow = '0 6px 20px rgba(249,115,22,0.35)'
+                childDel.style.height = '38px'
+                childDel.style.fontSize = '13px'
+
+                childBtns.appendChild(childSub24)
+                childBtns.appendChild(childSub2)
+                childBtns.appendChild(childDel)
+
+                childItem.appendChild(childTitle)
+                childItem.appendChild(childBtns)
+                childItem.style.width = '92%'
+                filhosContainer.appendChild(childItem)
+
+                childTitle.addEventListener('click', () => {
+                    alvo = { tipo: 'filho', paiIndex, filhoIndex }
+                    frm.inProduto.value = filho.nome
+                    frm.inValor.value = filho.valor
+                })
+
+                childSub24.addEventListener('click', () => aplicarSubtracao(2.4, 'filho', filhoIndex))
+                childSub2.addEventListener('click', () => aplicarSubtracao(2, 'filho', filhoIndex))
+
+                childDel.addEventListener('click', () => {
+                    const ok = confirm(`Excluir o filho: ${filho.nome}?`)
+                    if (!ok) return
+
+                    const previousState = JSON.parse(localStorage.getItem("produtos") || "[]");
+                    history.push([...previousState]);
+
+                    produtos[paiIndex].filhos.splice(filhoIndex, 1)
+                    localStorage.setItem("produtos", JSON.stringify(produtos))
+                    renderLista()
+                })
+            })
+        }
 
 
         function aplicarSubtracao(valorSub, tipo, filhoIndex) {
@@ -266,9 +365,15 @@ function renderLista() {
                 produtos[paiIndex].filhos[filhoIndex].valor = Math.max(0, produtos[paiIndex].filhos[filhoIndex].valor - valorSub)
             }
 
-            localStorage.setItem("produtos", JSON.stringify(produtos))
+        localStorage.setItem("produtos", JSON.stringify(produtos))
+
+            // Para não fechar ao editar filho, deixa o pai selecionado como aberto
+            if (tipo === 'filho' && paiIndex >= 0) {
+                localStorage.setItem("filhosAbertosPaiId", produtos[paiIndex].id)
+            }
             renderLista()
         }
+
 
         // seleção do pai (último clicado)
         titleSpan.addEventListener('click', () => {
@@ -287,6 +392,8 @@ function renderLista() {
             aberto = !aberto
             filhosContainer.style.display = aberto ? 'block' : 'none'
             toggleBtn.textContent = aberto ? '▼' : '▶'
+
+            localStorage.setItem("filhosAbertosPaiId", aberto ? pai.id : "")
 
             if (aberto && filhosContainer.children.length === 0) {
                 ;(pai.filhos || []).forEach((filho) => {

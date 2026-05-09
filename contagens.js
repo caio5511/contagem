@@ -25,31 +25,34 @@ const inUnit = document.querySelector("#inUnit")
 btMultiplicar.addEventListener("click", () => {
     const qtde = parseFloat(inQtde.value) || 0
     const unit = parseFloat(inUnit.value) || 0
-    if (qtde > 0 && unit > 0 && frm.inProduto.value.trim()) {
+    const nome = (frm.inProduto.value || "").trim()
+
+    if (qtde > 0 && unit > 0 && nome) {
         const previousState = JSON.parse(localStorage.getItem("produtos") || "[]");
         history.push([...previousState]);
+
         const valor = qtde * unit
-        // Soma ao valor atual se existir, senão novo
-        const currentValor = parseFloat(frm.inValor.value) || 0
-        const novoValor = currentValor + valor
-        frm.inValor.value = novoValor.toFixed(3)
-        
-        // Aplicar soma diretamente à lista se produto existe
-        const nome = frm.inProduto.value.trim()
+
+        // Atualiza a lista sempre: se não existir, cria.
         const index = produtos.findIndex(p => p.nome === nome)
+
         if (index !== -1) {
             produtos[index].valor += valor
-            localStorage.setItem("produtos", JSON.stringify(produtos))
-            renderLista()
-            // Limpar seleção após alteração
-            frm.reset()
-            editIndex = -1
         } else {
-            frm.inProduto.focus()
+            produtos.push({ nome, valor })
         }
+
+        localStorage.setItem("produtos", JSON.stringify(produtos))
+        renderLista()
+
+        // Mantém o formulário consistente.
+        frm.inProduto.value = nome
+        frm.inValor.value = Number(produtos.find(p => p.nome === nome)?.valor ?? valor).toFixed(3)
+        editIndex = -1
     } else {
         alert("Insira Qtde, Unitário e Produto válidos")
     }
+
     inQtde.value = ''
     inUnit.value = ''
 })

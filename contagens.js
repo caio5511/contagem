@@ -46,10 +46,11 @@ btMultiplicar.addEventListener("click", () => {
         renderLista()
 
         // Zera os campos iniciais para não haver confusão
+        frm.reset()
         frm.inProduto.value = ''
         frm.inValor.value = ''
-        frm.reset()
         editIndex = -1
+
 
     } else {
         alert("Insira Qtde, Unitário e Produto válidos")

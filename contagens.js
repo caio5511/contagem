@@ -45,10 +45,12 @@ btMultiplicar.addEventListener("click", () => {
         localStorage.setItem("produtos", JSON.stringify(produtos))
         renderLista()
 
-        // Mantém o formulário consistente.
-        frm.inProduto.value = nome
-        frm.inValor.value = Number(produtos.find(p => p.nome === nome)?.valor ?? valor).toFixed(3)
+        // Zera os campos iniciais para não haver confusão
+        frm.inProduto.value = ''
+        frm.inValor.value = ''
+        frm.reset()
         editIndex = -1
+
     } else {
         alert("Insira Qtde, Unitário e Produto válidos")
     }

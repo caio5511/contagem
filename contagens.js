@@ -45,13 +45,15 @@ btMultiplicar.addEventListener("click", () => {
         localStorage.setItem("produtos", JSON.stringify(produtos))
         renderLista()
 
-        // Zera completamente os campos iniciais para permitir próxima inclusão
-        // (e evita que valores permaneçam no formulário em alguns navegadores/Android)
+        // Zera completamente os campos iniciais e também os valores visuais
+        // usados na renderização/edição para evitar que a UI “reapareça” no Android.
+        editIndex = -1
+        frm.reset()
         frm.inProduto.value = ''
         frm.inValor.value = ''
         inQtde.value = ''
         inUnit.value = ''
-        editIndex = -1
+
 
 
 
